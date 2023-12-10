@@ -1,6 +1,6 @@
 import React from "react";
 
-const Task = ({ taskObj, onComplete }) => {
+const Task = ({ taskObj, updateStatus }) => {
   return (
     <div className="task">
       <h3>{taskObj.title}</h3>
@@ -10,7 +10,13 @@ const Task = ({ taskObj, onComplete }) => {
           <span className="pill" key={p}>{p}</span>
         ))}
       </div>
-      {onComplete && <button onClick={() => onComplete(taskObj.id)}>Tamamlandı</button>}
+      <button 
+        onClick={() => updateStatus(
+        taskObj.id,
+        taskObj.status === "Yapılacak" ? "Yapıldı" : "Yapılacak")
+        }>
+        {taskObj.status === "Yapılacak" ? "Yapıldı" : "Yapılacak'a çevir" }
+        </button>
     </div>
   );
 };
